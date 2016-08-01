@@ -9,8 +9,8 @@
     "Bundle-Description": "<%= description %>",
     // vendor information for this bundle
     "Bundle-Vendor": "e.g. your company",
-    // define bundle dependencies
+    // define bundle dependencies,
+    ""
     "Require-Bundle": [],
-    "Components": [
-    ]
+    "Components": []
 }
