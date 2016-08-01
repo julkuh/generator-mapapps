@@ -1,4 +1,4 @@
-# generator-mapapps [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+[//]: #  # generator-mapapps [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 > A generator for con terra GmbH map.apps. With it, the scaffolding of new bundles will be easy.
 
 ## Installation
@@ -10,18 +10,17 @@ npm install -g yo
 npm install -g generator-mapapps
 ```
 
-Then generate your new project:
+Then generate your map.apps App:
 
 ```bash
-yo mapapps
+yo mapapps:app
 ```
 
-## Getting To Know Yeoman
+or generate your map.apps Bundle:
 
- * Yeoman has a heart of gold.
- * Yeoman is a person with feelings and opinions, but is very easy to work with.
- * Yeoman can be too opinionated at times but is easily convinced not to be.
- * Feel free to [learn more about Yeoman](http://yeoman.io/).
+```bash
+yo mapapps:bundle
+```
 
 ## License
 
