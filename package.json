@@ -1,0 +1,32 @@
+{
+    "name": "generator-mapapps",
+    "version": "0.0.1",
+    "description": "A generator for con terra GmbH map.apps. With it, the scaffolding of new bundles will be easy.",
+    "homepage": "https://github.com/julkuh/generator-mapapps",
+    "author": {
+        "name": "Julian Kuhlmann",
+        "email": "julkuh@googlemail.com",
+        "url": ""
+    },
+    "files": [
+    "generators/app",
+    "generators/bundle"
+  ],
+    "keywords": [
+    "map.apps",
+    "con terra",
+    "bundles",
+    "yeoman-generator"
+  ],
+    "dependencies": {
+        "yeoman-generator": "^0.23.0",
+        "chalk": "^1.0.0",
+        "yosay": "^1.0.0"
+    },
+    "devDependencies": {
+        "yeoman-test": "^1.0.0",
+        "yeoman-assert": "^2.0.0"
+    },
+    "repository": "julkuh/generator-mapapps",
+    "license": "Apache-2.0"
+}

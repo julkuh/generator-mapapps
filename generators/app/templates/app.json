@@ -1,0 +1,6 @@
+{
+    "load": {
+        "allowedBundles": ["system", "templatelayout"]
+    },
+    "bundles": {}
+}
