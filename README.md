@@ -10,13 +10,13 @@ npm install -g yo
 npm install -g generator-mapapps
 ```
 
-Then generate your map.apps App:
+Then generate your map.apps **App**:
 
 ```bash
 yo mapapps:app
 ```
 
-or generate your map.apps Bundle:
+or generate your map.apps **Bundle**:
 
 ```bash
 yo mapapps:bundle
