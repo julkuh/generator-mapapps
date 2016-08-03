@@ -26,7 +26,7 @@ module.exports = yeoman.Base.extend({
                 type: 'input',
                 name: 'name',
                 message: 'How shall your bundle be named?',
-                default: 'myBundle'
+                default: 'mybundle'
             }, {
                 type: 'input',
                 name: 'version',
@@ -48,38 +48,42 @@ module.exports = yeoman.Base.extend({
         }.bind(this));
     },
     writing: function () {
-        //convert whitespaces in bundle name to "-".
+        //convert whitespaces in bundle name to "-" to use it as bundle-id and folder name.
         this.bundeleID = this.answers.name.replace(/\s/g, "-");
         this.bundleFolder = this.bundeleID;
 
         // with i18n
         if (!this.answers.skipI18n) {
             this._copyI18n();
-            this.bundleLocalization = '';
+            this.bundleLocalization = '\n';
             this.answers.name = '${bundleName}'
             this.answers.description = '${bundleDescription}'
+            this._copyBundleFile('main.js', {});
+            this._copyBundleFile('module.js', {
+                moduleDefine: '"."'
+            });
         }
 
         // without i18n
         else {
-            this.bundleLocalization = '"Bundle-Localization": [],';
-            this._copyBundleFile('main.js');
+            this.bundleLocalization = '"Bundle-Localization": [],\n\t"Bundle-Main": "",';
+            this._copyBundleFile('module.js', {
+                moduleDefine: ''
+            });
         }
-        this._copyBundleFile('manifest.json');
-        this._copyBundleFile('module.js');
+        this._copyBundleFile('manifest.json', {
+            id: this.bundleFolder,
+            name: this.answers.name,
+            version: this.answers.version,
+            description: this.answers.description,
+            bundleLocalization: this.bundleLocalization
+        });
     },
 
-    _copyBundleFile(filename) {
+    _copyBundleFile(filename, replacements) {
         this.fs.copyTpl(
             this.templatePath(filename),
-            this.destinationPath(this.bundleFolder + '/' + filename), {
-                id: this.bundleFolder,
-                name: this.answers.name,
-                version: this.answers.version,
-                description: this.answers.description,
-                bundleLocalization: this.bundleLocalization,
-                defineString: ""
-            }
+            this.destinationPath(this.bundleFolder + '/' + filename), replacements
         );
     },
     _copyI18n() {

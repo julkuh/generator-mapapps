@@ -9,7 +9,7 @@
     "Bundle-Version": "<%= version %>",
     // vendor information for this bundle
     "Bundle-Vendor": "e.g. your company",
-    <%= bundleLocalization %>
+    <%- bundleLocalization %>
     // define bundle dependencies
     "Require-Bundle": [],
     "Components": []
