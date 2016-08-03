@@ -1,3 +1,4 @@
+// created with mapapps yeoman generator available at https://www.npmjs.com/package/generator-mapapps
 {
     // internal name of the bundle
     "Bundle-SymbolicName": "<%= id %>",
