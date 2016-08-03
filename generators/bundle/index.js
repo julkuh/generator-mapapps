@@ -25,7 +25,8 @@ module.exports = yeoman.Base.extend({
             {
                 type: 'input',
                 name: 'name',
-                message: 'How shall your bundle be named?'
+                message: 'How shall your bundle be named?',
+                default: 'myBundle'
             }, {
                 type: 'input',
                 name: 'version',
@@ -38,58 +39,65 @@ module.exports = yeoman.Base.extend({
                 default: 'Add description later'
             }, {
                 type: 'confirm',
-                name: 'i18n',
-                message: 'Do you need i18n files?',
-                default: true
+                name: 'skipI18n',
+                message: 'Skip creation of i18n?',
+                default: false
             }
        ]).then(function (answers) {
             this.answers = answers;
         }.bind(this));
     },
     writing: function () {
+        this.bundleFolder = this.answers.name;
+        // without i18n
+        if (this.answers.skipI18n) {
+            this.bundleLocalization = '"Bundle-Localization": [],';
+        }
+        // with i18n
+        else {
+            this._copyI18n();
+            this.bundleLocalization = '';
+            // TODO: how to escape ${}
+            this.answers.name = '${bundleName}'
+            this.answers.description = '${bundleDescription}'
+        }
         this._copyBundleFile('manifest.json');
         this._copyBundleFile('module.js');
-        if (this.answers.i18n) {
-            this._copyi18n();
-        }
     },
 
     _copyBundleFile(filename) {
-        var bundleDir = this.answers.name;
 
-        if (this.answers.i18n) {
-            //TODO: replace with ${bundleDescription}
-        }
+        if (this.answers.i18n) {}
 
         this.fs.copyTpl(
             this.templatePath(filename),
-            this.destinationPath(bundleDir + '/' + filename), {
+            this.destinationPath(this.bundleFolder + '/' + filename), {
+                id: this.bundleFolder,
                 name: this.answers.name,
                 version: this.answers.version,
                 description: this.answers.description,
-                i18n: this.answers.i18n
+                bundleLocalization: this.bundleLocalization
             }
         );
     },
-    _copyi18n() {
-        var bundleDir = this.answers.name;
+    _copyI18n() {
         this.fs.copyTpl(
             this.templatePath('nls/bundle.js'),
-            this.destinationPath(bundleDir + '/nls/bundle.js'), {
+            this.destinationPath(this.bundleFolder + '/nls/bundle.js'), {
                 name: this.answers.name,
                 description: this.answers.description
             }
         );
         this.fs.copyTpl(
             this.templatePath('nls/de/bundle.js'),
-            this.destinationPath(bundleDir + '/nls/de/bundle.js'), {
+            this.destinationPath(this.bundleFolder + '/nls/de/bundle.js'), {
                 name: this.answers.name,
                 description: this.answers.description
             }
         );
         this.fs.copyTpl(
             this.templatePath('main.js'),
-            this.destinationPath(bundleDir + '/main.js'), {
+            this.destinationPath(this.bundleFolder + '/main.js'), {
                 name: this.answers.name,
                 description: this.answers.description
             }

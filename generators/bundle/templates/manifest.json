@@ -1,14 +1,15 @@
 {
     // internal name of the bundle
-    "Bundle-SymbolicName": "<%= name %>",
+    "Bundle-SymbolicName": "<%= id %>",
     // "human-readable" name of the bundle
     "Bundle-Name": "<%= name %>",
-    // version of this bundle
-    "Bundle-Version": "<%= version %>",
     // description of the bundle
     "Bundle-Description": "<%= description %>",
+    // version of this bundle
+    "Bundle-Version": "<%= version %>",
     // vendor information for this bundle
     "Bundle-Vendor": "e.g. your company",
+    <%= bundleLocalization %>
     // define bundle dependencies
     "Require-Bundle": [],
     "Components": []
