@@ -50,6 +50,11 @@ module.exports = yeoman.Base.extend({
                 name: 'widgetCreation',
                 message: 'Do you want to create a Widget, Window and ToggleTool?',
                 default: no
+            },{
+                type: 'confirm',
+                name: 'createConfigBundle',
+                message: 'Do you want to create a config?',
+                default: no                
             }
             */
 
