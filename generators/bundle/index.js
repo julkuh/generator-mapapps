@@ -54,60 +54,55 @@ module.exports = yeoman.Base.extend({
 
         // with i18n
         if (!this.answers.skipI18n) {
-            this._copyI18n();
             this.bundleLocalization = '\n';
-            this.answers.name = '${bundleName}'
-            this.answers.description = '${bundleDescription}'
-            this._copyBundleFile('main.js', {});
-            this._copyBundleFile('module.js', {
+
+            this._copyFile('main.js', {});
+            this._copyFile('module.js', {
                 moduleDefine: '"."'
             });
+            this._copyFile('main.js', {
+                defineString: "dojo/i18n!./nls/bundle"
+            });
+            this._copyFile('nls/bundle.js', {
+                name: this.answers.name,
+                description: this.answers.description
+            });
+            this._copyFile('nls/de/bundle.js', {
+                name: this.answers.name,
+                description: this.answers.description
+            });
+
+            this._copyFile('manifest.json', {
+                id: this.bundeleID,
+                name: '${bundleName}',
+                version: this.answers.version,
+                description: '${bundleDescription}',
+                bundleLocalization: this.bundleLocalization
+            });
+
         }
 
         // without i18n
         else {
             this.bundleLocalization = '"Bundle-Localization": [],\n\t"Bundle-Main": "",';
-            this._copyBundleFile('module.js', {
+            this._copyFile('module.js', {
                 moduleDefine: ''
             });
+
+            this._copyFile('manifest.json', {
+                id: this.bundeleID,
+                name: this.answers.name,
+                version: this.answers.version,
+                description: this.answers.description,
+                bundleLocalization: this.bundleLocalization
+            });
         }
-        this._copyBundleFile('manifest.json', {
-            id: this.bundleFolder,
-            name: this.answers.name,
-            version: this.answers.version,
-            description: this.answers.description,
-            bundleLocalization: this.bundleLocalization
-        });
     },
 
-    _copyBundleFile(filename, replacements) {
+    _copyFile(filename, replacements) {
         this.fs.copyTpl(
             this.templatePath(filename),
             this.destinationPath(this.bundleFolder + '/' + filename), replacements
-        );
-    },
-    _copyI18n() {
-        this.fs.copyTpl(
-            this.templatePath('nls/bundle.js'),
-            this.destinationPath(this.bundleFolder + '/nls/bundle.js'), {
-                name: this.answers.name,
-                description: this.answers.description
-            }
-        );
-        this.fs.copyTpl(
-            this.templatePath('nls/de/bundle.js'),
-            this.destinationPath(this.bundleFolder + '/nls/de/bundle.js'), {
-                name: this.answers.name,
-                description: this.answers.description
-            }
-        );
-        this.fs.copyTpl(
-            this.templatePath('main.js'),
-            this.destinationPath(this.bundleFolder + '/main.js'), {
-                name: this.answers.name,
-                description: this.answers.description,
-                defineString: "dojo/i18n!./nls/bundle"
-            }
         );
     }
 
