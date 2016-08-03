@@ -12,7 +12,7 @@ module.exports = yeoman.Base.extend({
         yeoman.Base.apply(this, arguments);
 
         // Next, add your custom code
-        this.option('coffee'); // This method adds support for a `--coffee` flag
+        //this.option('coffee'); // This method adds support for a `--coffee` flag
     },
 
 
@@ -48,27 +48,28 @@ module.exports = yeoman.Base.extend({
         }.bind(this));
     },
     writing: function () {
-        this.bundleFolder = this.answers.name;
-        // without i18n
-        if (this.answers.skipI18n) {
-            this.bundleLocalization = '"Bundle-Localization": [],';
-        }
+        //convert whitespaces in bundle name to "-".
+        this.bundeleID = this.answers.name.replace(/\s/g, "-");
+        this.bundleFolder = this.bundeleID;
+
         // with i18n
-        else {
+        if (!this.answers.skipI18n) {
             this._copyI18n();
             this.bundleLocalization = '';
-            // TODO: how to escape ${}
             this.answers.name = '${bundleName}'
             this.answers.description = '${bundleDescription}'
+        }
+
+        // without i18n
+        else {
+            this.bundleLocalization = '"Bundle-Localization": [],';
+            this._copyBundleFile('main.js');
         }
         this._copyBundleFile('manifest.json');
         this._copyBundleFile('module.js');
     },
 
     _copyBundleFile(filename) {
-
-        if (this.answers.i18n) {}
-
         this.fs.copyTpl(
             this.templatePath(filename),
             this.destinationPath(this.bundleFolder + '/' + filename), {
@@ -76,7 +77,8 @@ module.exports = yeoman.Base.extend({
                 name: this.answers.name,
                 version: this.answers.version,
                 description: this.answers.description,
-                bundleLocalization: this.bundleLocalization
+                bundleLocalization: this.bundleLocalization,
+                defineString: ""
             }
         );
     },
@@ -99,7 +101,8 @@ module.exports = yeoman.Base.extend({
             this.templatePath('main.js'),
             this.destinationPath(this.bundleFolder + '/main.js'), {
                 name: this.answers.name,
-                description: this.answers.description
+                description: this.answers.description,
+                defineString: "dojo/i18n!./nls/bundle"
             }
         );
     }
