@@ -1,7 +1,7 @@
 {
     "name": "generator-mapapps",
-    "version": "0.0.2",
-    "description": "A generator for con terra GmbH map.apps. With it, the scaffolding of new bundles will be easy.",
+    "version": "0.0.3",
+    "description": "A generator for con terra GmbH map.apps. With it, the scaffolding of new bundles and apps will be easy.",
     "homepage": "https://github.com/julkuh/generator-mapapps",
     "author": {
         "name": "Julian Kuhlmann",
