@@ -43,6 +43,16 @@ module.exports = yeoman.Base.extend({
                 message: 'Skip creation of i18n?',
                 default: false
             }
+            // TODO:
+            /*
+            ,{
+                type: 'confirm',
+                name: 'widgetCreation',
+                message: 'Do you want to create a Widget, Window and ToggleTool?',
+                default: no
+            }
+            */
+
        ]).then(function (answers) {
             this.answers = answers;
         }.bind(this));
