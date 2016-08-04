@@ -128,7 +128,7 @@ module.exports = yeoman.Base.extend({
         });
 
         // module.js
-        this.module.define += ',\n\t"' + this.component.name + '"';
+        this.module.define += ',\n\t"./' + this.component.name + '"';
         this._copyFile('module.js', {
             moduleDefine: this.module.define
         });
