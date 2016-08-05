@@ -50,14 +50,14 @@ module.exports = yeoman.Base.extend({
                 message: 'Give a name for a first Bundle Component.',
                 default: 'MyFirstComponent'
             }
-            // TODO:
-            /*
-            ,{
+            , {
                 type: 'confirm',
-                name: 'widgetCreation',
-                message: 'Does your bundle need a UI? If YES, let's create a Widget, Window and ToggleTool. If NO, an empty Component and its JS File is created.',
-                default: no
-            },{
+                name: 'createWidget',
+                message: 'Does your bundle need a UI? If YES, let\' create a Widget, Window and ToggleTool.If NO, an empty Component and its JS File is created.',
+                default: true
+            }
+            // TODO:
+            /*,{
                 type: 'confirm',
                 name: 'createConfigBundle',
                 message: 'Do you want to create a config?',
@@ -71,7 +71,8 @@ module.exports = yeoman.Base.extend({
     },
     writing: function () {
         this.manifest = {}
-        this.manifest.components = '';
+            //this.manifest.components = '';
+        this.manifest.components = [];
         this.module = {
             define: ''
         };
@@ -86,6 +87,37 @@ module.exports = yeoman.Base.extend({
 
         this._createComponentInManifest(this.component.name);
 
+        //componentname.js
+        if (this.answers.createWidget) {
+            this.manifest.layoutWidgets = {
+                "widgetRole": this.component.name,
+                "window": {
+                    "title": this.answers.skipI18n ? "Put a window title here" : "${ui.windowTitle}",
+                    "dockTool": this.component.name + "ToggleTool",
+                    "marginBox": {
+                        "w": 330,
+                        "h": 210
+                    }
+                }
+            };
+            this._createToggleTool();
+            this.fs.copyTpl(
+                this.templatePath('ComponentNameWithUi.js'),
+                this.destinationPath(this.bundleFolder + '/' + this.component.name + ".js"), {
+                    componentName: this.component.name
+                }
+            );
+            this.fs.copyTpl(
+                this.templatePath('templates/widgetTemplate.html'),
+                this.destinationPath(this.bundleFolder + '/templates/' + this.component.name + "UI.html"), {}
+            )
+        } else {
+            this.manifest.layoutWidgets = "";
+            this.fs.copyTpl(
+                this.templatePath('ComponentName.js'),
+                this.destinationPath(this.bundleFolder + '/' + this.component.name + ".js"), {}
+            );
+        }
         // with i18n
         if (!this.answers.skipI18n) {
             this.manifest.bundleLocalization = '\n';
@@ -124,7 +156,8 @@ module.exports = yeoman.Base.extend({
             version: '0.0.1',
             description: this.manifest.description,
             bundleLocalization: this.manifest.bundleLocalization,
-            components: this.manifest.components
+            components: JSON.stringify(this.manifest.components),
+            layoutWidgets: JSON.stringify(this.manifest.layoutWidgets)
         });
 
         // module.js
@@ -132,12 +165,6 @@ module.exports = yeoman.Base.extend({
         this._copyFile('module.js', {
             moduleDefine: this.module.define
         });
-
-        //componentname.js
-        this.fs.copyTpl(
-            this.templatePath('ComponentName.js'),
-            this.destinationPath(this.bundleFolder + '/' + this.component.name + ".js"), {}
-        );
     },
 
     _copyFile(filename, replacements) {
@@ -151,7 +178,32 @@ module.exports = yeoman.Base.extend({
         var componentToAdd = {
             "name": name
         };
-        this.manifest.components = '[{\n\t\t"name": "' + name + '"\n\t}]';
+        if (this.answers.createWidget) {
+            componentToAdd.provides = ["dijit.Widget"];
+            componentToAdd.properties = {
+                "widgetRole": this.component.name
+            }
+        }
+        //this.manifest.components = '[{\n\t\t"name": "' + name + '"\n\t}]';
+        this.manifest.components.push(componentToAdd);
+    },
+    _createToggleTool() {
+        var toolName = this.component.name + "ToggleTool";
+
+        var tool = {
+            "name": toolName,
+            "impl": "ct/tools/Tool",
+            "provides": ["ct.tools.Tool"],
+            "propertiesConstructor": true,
+            "properties": {
+                "toolRole": "toolset",
+                "id": toolName,
+                "iconClass": "icon-heart",
+                "title": this.answers.skipI18n ? "Put a tool title here" : "${ui.toolTitle}",
+                "togglable": true
+            }
+        };
+        this.manifest.components.push(tool);
     }
 
     //    method1: function () {

@@ -1,6 +1,10 @@
 define(
     ({
         bundleName: "<%= name %>",
-        bundleDescription: "<%= description %>"
+        bundleDescription: "<%= description %>",
+        ui: {
+            toolTitle: "<%= name %> Werkzeug",
+            windowTitle: "<%= name %> Fenster",
+        }
     })
 );

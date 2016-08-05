@@ -13,5 +13,6 @@
     <%- bundleLocalization %>
     // define bundle dependencies
     "Require-Bundle": [],
+    "layout-widgets": [<%- layoutWidgets %>],
     "Components": <%- components %>
 }

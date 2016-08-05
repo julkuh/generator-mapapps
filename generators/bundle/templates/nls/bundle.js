@@ -1,7 +1,11 @@
 define({
     root: ({
         bundleName: "<%= name %>",
-        bundleDescription: "<%= description %>"
+        bundleDescription: "<%= description %>",
+        ui: {
+            toolTitle: "<%= name %> Tool",
+            windowTitle: "<%= name %> Window",
+        }
     }),
     "de": true
 });
