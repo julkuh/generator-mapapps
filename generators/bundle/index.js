@@ -62,6 +62,9 @@ module.exports = yeoman.Base.extend({
                 name: 'createConfigBundle',
                 message: 'Do you want to create a config?',
                 default: no                
+            },
+            { type: 'confirm',
+                'WANA CREATE TESTS FOR YOUR COMPONENT?
             }
             */
 
