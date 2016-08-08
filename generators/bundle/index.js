@@ -56,7 +56,7 @@ module.exports = yeoman.Base.extend({
                 message: 'Does your bundle need a UI? If YES, let\' create a Widget, Window and ToggleTool.If NO, an empty Component and its JS File is created.',
                 default: true
             }
-            // TODO:
+            // FUTURE:
             /*,{
                 type: 'confirm',
                 name: 'createConfigBundle',
