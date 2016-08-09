@@ -31,6 +31,6 @@ Apache-2.0 © [Julian Kuhlmann]()
 [travis-image]: https://travis-ci.org/julkuh/generator-mapapps.svg?branch=master
 [travis-url]: https://travis-ci.org/julkuh/generator-mapapps
 [daviddm-image]: https://david-dm.org//generator-mapapps.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org//generator-mapapps
-[coveralls-image]: https://coveralls.io/repos//generator-mapapps/badge.svg
-[coveralls-url]: https://coveralls.io/r//generator-mapapps
+[daviddm-url]: https://david-dm.org/julkuh/generator-mapapps
+[coveralls-image]: https://coveralls.io/repos/julkuh/generator-mapapps/badge.svg
+[coveralls-url]: https://coveralls.io/r/julkuh/generator-mapapps
