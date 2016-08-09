@@ -1,4 +1,4 @@
-# generator-mapapps
+# generator-mapapps [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 > A generator for con terra GmbH map.apps. With it, the scaffolding of new bundles will be easy.
 
 ## Installation
@@ -25,3 +25,12 @@ yo mapapps:bundle
 ## License
 
 Apache-2.0 © [Julian Kuhlmann]()
+
+[npm-image]: https://badge.fury.io/js/generator-mapapps.svg
+[npm-url]: https://npmjs.org/package/generator-mapapps
+[travis-image]: https://travis-ci.org//generator-mapapps.svg?branch=master
+[travis-url]: https://travis-ci.org//generator-mapapps
+[daviddm-image]: https://david-dm.org//generator-mapapps.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org//generator-mapapps
+[coveralls-image]: https://coveralls.io/repos//generator-mapapps/badge.svg
+[coveralls-url]: https://coveralls.io/r//generator-mapapps
