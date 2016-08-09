@@ -30,7 +30,7 @@ Apache-2.0 © [Julian Kuhlmann]()
 [npm-url]: https://npmjs.org/package/generator-mapapps
 [travis-image]: https://travis-ci.org/julkuh/generator-mapapps.svg?branch=master
 [travis-url]: https://travis-ci.org/julkuh/generator-mapapps
-[daviddm-image]: https://david-dm.org//generator-mapapps.svg?theme=shields.io
+[daviddm-image]: https://david-dm.org/julkuh/generator-mapapps.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/julkuh/generator-mapapps
 [coveralls-image]: https://coveralls.io/repos/julkuh/generator-mapapps/badge.svg
 [coveralls-url]: https://coveralls.io/r/julkuh/generator-mapapps
