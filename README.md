@@ -23,11 +23,11 @@ To skip the selection and start with the sub-generator directly, simplay type ``
 
 Apache-2.0 © [Julian Kuhlmann]()
 
-[npm-image]: https://badge.fury.io/js/generator-test.svg
-[npm-url]: https://npmjs.org/package/generator-test
-[travis-image]: https://travis-ci.org/julkuh/generator-test.svg?branch=master
-[travis-url]: https://travis-ci.org/julkuh/generator-test
-[daviddm-image]: https://david-dm.org/julkuh/generator-test.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/julkuh/generator-test
-[coveralls-image]: https://coveralls.io/repos/julkuh/generator-test/badge.svg
-[coveralls-url]: https://coveralls.io/r/julkuh/generator-test
+[npm-image]: https://badge.fury.io/js/generator-mapapps.svg
+[npm-url]: https://npmjs.org/package/generator-mapapps
+[travis-image]: https://travis-ci.org/julkuh/generator-mapapps.svg?branch=master
+[travis-url]: https://travis-ci.org/julkuh/generator-mapapps
+[daviddm-image]: https://david-dm.org/julkuh/generator-mapapps.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/julkuh/generator-mapapps
+[coveralls-image]: https://coveralls.io/repos/julkuh/generator-mapapps/badge.svg
+[coveralls-url]: https://coveralls.io/r/julkuh/generator-mapapps
