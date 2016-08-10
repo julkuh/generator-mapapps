@@ -9,14 +9,20 @@ First, install [Yeoman](http://yeoman.io) and generator-mapapps using [npm](http
 npm install -g yo
 npm install -g generator-mapapps
 ```
+## Usage
+To start generating, run 
+```bash 
+yo mapapps 
+```
+in your console
 
-Then generate your map.apps **App**:
+It is also possible to skip the first step and start directly with the creation flow by:
 
 ```bash
 yo mapapps:app
 ```
 
-or generate your map.apps **Bundle**:
+or
 
 ```bash
 yo mapapps:bundle
