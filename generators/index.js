@@ -17,7 +17,8 @@ module.exports = yeoman.Base.extend({
             type: 'list',
             name: 'subgenerator',
             message: 'Building an app or a bundle?',
-            choices: ['app', 'bundle']
+            choices: ['app', 'bundle'],
+            default: 'bundle'
             }];
 
         return this.prompt(prompts).then(function (answers) {
