@@ -1,6 +1,9 @@
 {
     "load": {
-        "allowedBundles": ["system", "templatelayout"]
+        "allowedBundles": [
+            "system",
+            "templatelayout"
+        ]
     },
     "bundles": {}
 }

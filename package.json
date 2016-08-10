@@ -1,6 +1,6 @@
 {
     "name": "generator-mapapps",
-    "version": "0.0.81",
+    "version": "0.0.82",
     "description": "A generator for con terra GmbH map.apps. With it, the scaffolding of new bundles and apps will be easy.",
     "homepage": "https://github.com/julkuh/generator-mapapps",
     "author": {
@@ -9,6 +9,7 @@
         "url": ""
     },
     "files": [
+    "generators",
     "generators/app",
     "generators/bundle"
   ],
@@ -19,8 +20,9 @@
     "yeoman-generator"
   ],
     "dependencies": {
-        "yeoman-generator": "^0.24.0",
         "chalk": "^1.0.0",
+        "gulp-beautify": "^2.0.0",
+        "yeoman-generator": "^0.24.0",
         "yosay": "^1.0.0"
     },
     "devDependencies": {

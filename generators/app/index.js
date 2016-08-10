@@ -1,14 +1,8 @@
 'use strict';
 var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
 
 module.exports = yeoman.Base.extend({
     prompting: function () {
-        this.log(yosay(
-            'Welcome to the world-class ' + chalk.red('generator-mapapps') + ' generator! Let\'s create a map.apps ' + chalk.green('app')
-        ));
-
         var prompts = [{
             type: 'input',
             name: 'name',

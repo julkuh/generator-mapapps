@@ -15,9 +15,9 @@ before(function () {
 
 it('creates files', function () {
     assert.file([
-            'myTestBundle/manifest.json',
-            'myTestBundle/MyFirstComponent.js'
-    ]);
+                        'myTestBundle/manifest.json',
+                        'myTestBundle/MyFirstComponent.js'
+                ]);
 });
 });
 
