@@ -17,7 +17,7 @@ module.exports = yeoman.Base.extend({
             type: 'list',
             name: 'subgenerator',
             message: 'Building an app or a bundle?',
-            choices: ['app', 'bundle'],
+            choices: ['bundle', 'app'],
             default: 'bundle'
             }];
 
