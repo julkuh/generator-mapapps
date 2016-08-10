@@ -16,17 +16,7 @@ yo mapapps
 ```
 in your console
 
-It is also possible to skip the first step and start directly with the creation flow by:
-
-```bash
-yo mapapps:app
-```
-
-or
-
-```bash
-yo mapapps:bundle
-```
+It is also possible to skip the first step and start directly with the creation flow by typing ```yo mapapps:app``` or ```yo mapapps:bundle```
 
 ## License
 
