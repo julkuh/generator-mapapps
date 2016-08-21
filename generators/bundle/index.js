@@ -49,11 +49,16 @@ module.exports = yeoman.Base.extend({
                 name: 'componentName',
                 message: 'Give a name for a first Bundle Component.',
                 default: 'MyFirstComponent'
-            }
-            , {
+            }, {
+                type: 'confirm',
+                name: 'skipInternTests',
+                message: 'Skip creation of intern tests? If NO, test suite can be started just after bundle is created. Keep testing your Code! ;)',
+                default: false
+
+            }, {
                 type: 'confirm',
                 name: 'createWidget',
-                message: 'Does your bundle need a UI? If YES, let\' create a Widget, Window and ToggleTool.If NO, an empty Component and its JS File is created.',
+                message: 'Does your bundle need a UI? If YES, let\'s create a Widget, Window and ToggleTool.If NO, an empty Component and its JS File is created.',
                 default: true
             }
             // FUTURE:
@@ -62,9 +67,6 @@ module.exports = yeoman.Base.extend({
                 name: 'createConfigBundle',
                 message: 'Do you want to create a config?',
                 default: no                
-            },
-            { type: 'confirm',
-                'WANA CREATE TESTS FOR YOUR COMPONENT?
             }
             */
 
@@ -168,6 +170,23 @@ module.exports = yeoman.Base.extend({
         this._copyFile('module.js', {
             moduleDefine: this.module.define
         });
+
+        //create intern tests
+        if (!this.answers.skipInternTests) {
+            var name = this.answers.componentName;
+            this._copyFile('tests/intern-all.js', {
+                name: name
+            });
+
+            this.fs.copyTpl(
+                this.templatePath('tests/ComponentTestFile.js'),
+                this.destinationPath(this.bundleFolder + '/tests/' + name + '.js'), {
+                    name: name
+                }
+            );
+
+
+        };
     },
 
     _copyFile(filename, replacements) {
