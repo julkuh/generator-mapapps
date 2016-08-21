@@ -11,7 +11,7 @@ var coveralls = require('gulp-coveralls');
 
 gulp.task('static', function () {
     //return gulp.src(['**/*.js', '!generator/bundle/templates/**.js'])
-    return gulp.src(['generators/app/**.js', 'generators/app/**.js', '!generators/bundle/templates/**.js'])
+    return gulp.src(['generators/app/**.js', 'generators/app/**.js', '!generators/bundle/templates/**.js', '!generators/bundle/tests/**.js'])
         .pipe(excludeGitignore());
     //.pipe(eslint())
     //.pipe(eslint.format())
