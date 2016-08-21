@@ -11,7 +11,7 @@ var coveralls = require('gulp-coveralls');
 
 gulp.task('static', function () {
     //return gulp.src(['**/*.js', '!generator/bundle/templates/**.js'])
-    return gulp.src(['generators/app/**.js', 'generators/app/**.js', '!generators/bundle/templates/**.js', '!generators/bundle/templates/tests/**.js'])
+    return gulp.src(['generators/app/**.js', 'generators/app/**.js', '!generators/bundle/templates/**/*.js'])
         .pipe(excludeGitignore());
     //.pipe(eslint())
     //.pipe(eslint.format())
@@ -25,7 +25,7 @@ gulp.task('nsp', function (cb) {
 });
 
 gulp.task('pre-test', function () {
-    return gulp.src(['generators/**/*.js', '!generators/**/templates/**.js'])
+    return gulp.src(['generators/**/*.js', '!generators/**/templates/**/*.js'])
         .pipe(excludeGitignore())
         .pipe(istanbul({
             includeUntested: true
