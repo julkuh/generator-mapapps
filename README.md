@@ -24,7 +24,7 @@ To skip the selection and start with the sub-generator directly, simplay type ``
  
 ## Release Note
 ### 0.0.9
-  * allow adding of additional components after initital scaffolding
+  * Creation of test folder inside the bundle so that intern tests are prepared and wait to be filled by a brave developper
 
 ## License
 
