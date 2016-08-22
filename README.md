@@ -20,7 +20,8 @@ you can launch the generator. It provides a selection wheather you want to creat
 To skip the selection and start with the sub-generator directly, simplay type ```yo mapapps:app``` to generate an app or ```yo mapapps:bundle``` to generate a bundle.
 
 ## Ideas for further Versions
-  * allow adding of additional components after initital scaffolding
+  * adding of additional components after initital scaffolding
+  * adding a live-configuration widget
  
 ## Release Note
 ### 0.0.9
