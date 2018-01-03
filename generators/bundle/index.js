@@ -1,22 +1,11 @@
 'use strict';
-var yeoman = require('yeoman-generator');
+var Generator = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 
-module.exports = yeoman.Base.extend({
-
-
-    // The name `constructor` is important here
-    constructor: function () {
-        // Calling the super constructor is important so our generator is correctly set up
-        yeoman.Base.apply(this, arguments);
-
-        // Next, add your custom code
-        //this.option('coffee'); // This method adds support for a `--coffee` flag
-    },
-
-
-    prompting: function () {
+module.exports = class extends Generator{
+    
+    prompting() {
         this.log(yosay(
             'Welcome to the ' + chalk.red('generator-mapapps') + ' generator! Let\'s create a map.apps ' + chalk.green('bundle')
         ));
@@ -73,8 +62,9 @@ module.exports = yeoman.Base.extend({
        ]).then(function (answers) {
             this.answers = answers;
         }.bind(this));
-    },
-    writing: function () {
+    }
+    
+    writing() {
         this.manifest = {}
             //this.manifest.components = '';
         this.manifest.components = [];
@@ -187,14 +177,14 @@ module.exports = yeoman.Base.extend({
 
 
         };
-    },
+    }
 
     _copyFile(filename, replacements) {
         this.fs.copyTpl(
             this.templatePath(filename),
             this.destinationPath(this.bundleFolder + '/' + filename), replacements
         );
-    },
+    }
 
     _createComponentInManifest(name) {
         var componentToAdd = {
@@ -208,7 +198,7 @@ module.exports = yeoman.Base.extend({
         }
         //this.manifest.components = '[{\n\t\t"name": "' + name + '"\n\t}]';
         this.manifest.components.push(componentToAdd);
-    },
+    }
     _createToggleTool() {
         var toolName = this.component.name + "ToggleTool";
 
@@ -227,13 +217,4 @@ module.exports = yeoman.Base.extend({
         };
         this.manifest.components.push(tool);
     }
-
-    //    method1: function () {
-    //        console.log('method 1 just ran');
-    //    },
-    //    method2: function () {
-    //        console.log('method 2 just ran');
-    //    }
-
-
-});
+};

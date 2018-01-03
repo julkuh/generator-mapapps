@@ -1,10 +1,10 @@
 'use strict';
-var yeoman = require('yeoman-generator');
+var Generator = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 
-module.exports = yeoman.Base.extend({
-    prompting: function () {
+module.exports = class extends Generator{
+    prompting() {
         this.log(yosay(
             'Welcome to the world-class ' + chalk.red('generator-mapapps') + ' generator! Let\'s create a map.apps ' + chalk.green('app')
         ));
@@ -19,12 +19,12 @@ module.exports = yeoman.Base.extend({
         return this.prompt(prompts).then(function (answers) {
             this.answers = answers;
         }.bind(this));
-    },
+    }
 
-    writing: function () {
+    writing() {
         this.fs.copy(
             this.templatePath('app.json'),
             this.destinationPath(this.answers.name + '/app.json')
         );
     }
-});
+};
