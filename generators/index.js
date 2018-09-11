@@ -17,8 +17,8 @@ module.exports = class extends Generator {
             type: 'list',
             name: 'subgenerator',
             message: 'Building an app or a bundle?',
-            choices: [/*'bundle4x',*/ 'bundle3x', 'app'],
-            default: 'bundle3x' //'bundle4x'
+            choices: ['bundle4x', 'bundle3x', 'app'],
+            default: 'bundle4x'
         }];
 
         return this.prompt(prompts).then(function (answers) {
@@ -31,11 +31,9 @@ module.exports = class extends Generator {
         if (this.answers.subgenerator === 'app') {
             this.composeWith('mapapps:app');
         }
-        /*
-            if (this.answers.subgenerator === 'bundle4x') {
-                this.composeWith('mapapps:bundle4x');
-            }
-        */
+        if (this.answers.subgenerator === 'bundle4x') {
+            this.composeWith('mapapps:bundle4x');
+        }
         if (this.answers.subgenerator === 'bundle3x') {
             this.composeWith('mapapps:bundle3x');
         }

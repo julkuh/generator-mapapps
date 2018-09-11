@@ -1,0 +1,13 @@
+// created with mapapps yeoman generator available at https://www.npmjs.com/package/generator-mapapps
+{
+    "name": "<%= id %>",
+    "title": "<%= name %>",
+    "description": "<%= description %>",
+    "version": "<%= version %>",
+    "vendor": "e.g. your company",
+    <%- bundleLocalization %>
+    "dependencies": [],
+    "layout-widgets": [<%- layoutWidgets %>
+    ],
+    "components": <%- components %>
+}
