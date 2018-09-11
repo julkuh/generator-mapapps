@@ -3,8 +3,8 @@ var Generator = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 
-module.exports = class extends Generator{
-    
+module.exports = class extends Generator {
+
     prompting() {
         this.log(yosay(
             'Welcome to the ' + chalk.red('generator-mapapps') + ' generator! Let\'s create a map.apps ' + chalk.green('bundle')
@@ -16,14 +16,7 @@ module.exports = class extends Generator{
                 name: 'name',
                 message: 'How shall the bundle be named?',
                 default: 'mybundle'
-            },
-            /*{
-                type: 'input',
-                name: 'version',
-                message: 'What\'s the initital Verison of your bundle?',
-                default: '0.0.1'
-            } */
-            {
+            }, {
                 type: 'input',
                 name: 'description',
                 message: 'Describe briefly what great stuff this bundle is going to do',
@@ -50,23 +43,13 @@ module.exports = class extends Generator{
                 message: 'Does your bundle need a UI? If YES, let\'s create a Widget, Window and ToggleTool.If NO, an empty Component and its JS File is created.',
                 default: true
             }
-            // FUTURE:
-            /*,{
-                type: 'confirm',
-                name: 'createConfigBundle',
-                message: 'Do you want to create a config?',
-                default: no                
-            }
-            */
-
-       ]).then(function (answers) {
+        ]).then(function (answers) {
             this.answers = answers;
         }.bind(this));
     }
-    
+
     writing() {
         this.manifest = {}
-            //this.manifest.components = '';
         this.manifest.components = [];
         this.module = {
             define: ''

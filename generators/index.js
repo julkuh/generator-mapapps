@@ -4,9 +4,9 @@ var chalk = require('chalk');
 var yosay = require('yosay');
 //var beautify = require('gulp-beautify');
 
-module.exports = class extends Generator{
+module.exports = class extends Generator {
 
-    initializing(){}
+    initializing() { }
 
     prompting() {
         this.log(yosay(
@@ -17,9 +17,9 @@ module.exports = class extends Generator{
             type: 'list',
             name: 'subgenerator',
             message: 'Building an app or a bundle?',
-            choices: ['bundle', 'app'],
-            default: 'bundle'
-            }];
+            choices: [/*'bundle4x',*/ 'bundle3x', 'app'],
+            default: 'bundle3x' //'bundle4x'
+        }];
 
         return this.prompt(prompts).then(function (answers) {
             this.answers = answers;
@@ -27,12 +27,17 @@ module.exports = class extends Generator{
     }
 
 
-    configuring(){
+    configuring() {
         if (this.answers.subgenerator === 'app') {
             this.composeWith('mapapps:app');
         }
-        if (this.answers.subgenerator === 'bundle') {
-            this.composeWith('mapapps:bundle');
+        /*
+            if (this.answers.subgenerator === 'bundle4x') {
+                this.composeWith('mapapps:bundle4x');
+            }
+        */
+        if (this.answers.subgenerator === 'bundle3x') {
+            this.composeWith('mapapps:bundle3x');
         }
     }
 
