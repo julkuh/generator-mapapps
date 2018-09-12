@@ -9,8 +9,9 @@
         "url": ""
     },
     "files": [
-        "generators/app",
-        "generators/bundle"
+        "generators/app3x",
+        "generators/bundle4x",
+        "generators/bundle3x"
     ],
     "keywords": [
         "map.apps",
