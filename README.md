@@ -1,5 +1,5 @@
 ## generator-mapapps [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
-> A generator for con terra GmbH map.apps. With it, the scaffolding of new bundles will be easy.
+> A generator for con terra GmbH [map.apps](https://github.com/conterra/mapapps-4-developers). With it, the scaffolding of new bundles will be easy.
 
 ## Installation
 
