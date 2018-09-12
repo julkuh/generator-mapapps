@@ -1,13 +1,15 @@
-// created with mapapps yeoman generator available at https://www.npmjs.com/package/generator-mapapps
 {
     "name": "<%= id %>",
-    "title": "<%= name %>",
-    "description": "<%= description %>",
+    "title": "${bundleName}",
+    "description": "${bundleDescription}",
     "version": "<%= version %>",
     "vendor": "e.g. your company",
-    <%- bundleLocalization %>
-    "dependencies": [],
-    "layout-widgets": [<%- layoutWidgets %>
+    "dependencies": {
+        "apprt-vue": "^4.0.0",
+        "apprt-vuetify": "^4.0.0"
+    },
+    "layout-widgets": [
+        <%- layoutWidgets %>
     ],
     "components": <%- components %>
 }

@@ -22,11 +22,6 @@ module.exports = class extends Generator {
                 message: 'Describe briefly what great stuff this bundle is going to do',
                 default: 'Add description later'
             }, {
-                type: 'confirm',
-                name: 'skipI18n',
-                message: 'Skip creation of i18n?',
-                default: false
-            }, {
                 type: 'input',
                 name: 'componentName',
                 message: 'Give a name for a first Bundle Component.',
@@ -37,11 +32,6 @@ module.exports = class extends Generator {
                 message: 'Skip creation of intern tests? If NO, test suite can be started just after bundle is created. Keep testing your Code! ;)',
                 default: false
 
-            }, {
-                type: 'confirm',
-                name: 'createWidget',
-                message: 'Does your bundle need a UI? If YES, let\'s create a Widget, Window and ToggleTool.If NO, an empty Component and its JS File is created.',
-                default: true
             }
         ]).then(function (answers) {
             this.answers = answers;
@@ -49,8 +39,9 @@ module.exports = class extends Generator {
     }
 
     writing() {
-        this.manifest = {}
-        this.manifest.components = [];
+        this.manifest = {
+            components:[]
+        }
         this.module = {
             define: ''
         };
@@ -63,85 +54,57 @@ module.exports = class extends Generator {
         this.bundeleID = this.answers.name.replace(/\s/g, "-");
         this.bundleFolder = this.bundeleID;
 
-        this._createComponentInManifest(this.component.name);
+        this._createComponentInManifest(this.component.name+"Factory");
 
         //componentname.js
-        if (this.answers.createWidget) {
-            this.manifest.layoutWidgets = {
-                "widgetRole": this.component.name,
-                "window": {
-                    "title": this.answers.skipI18n ? "Put a window title here" : "${ui.windowTitle}",
-                    "dockTool": this.component.name + "ToggleTool",
-                    "marginBox": {
-                        "w": 330,
-                        "h": 210
-                    }
+        this.manifest.layoutWidgets = {
+            "widgetRole": this.component.name,
+            "window": {
+                "title": "${ui.windowTitle}",
+                "dockTool": this.component.name + "ToggleTool",
+                "marginBox": {
+                    "w": 350,
+                    "h": 355
                 }
-            };
-            this._createToggleTool();
-            this.fs.copyTpl(
-                this.templatePath('ComponentNameWithUi.js'),
-                this.destinationPath(this.bundleFolder + '/' + this.component.name + ".js"), {
-                    componentName: this.component.name
-                }
-            );
-            this.fs.copyTpl(
-                this.templatePath('templates/widgetTemplate.html'),
-                this.destinationPath(this.bundleFolder + '/templates/' + this.component.name + "UI.html"), {}
-            )
-        } else {
-            this.manifest.layoutWidgets = "";
-            this.fs.copyTpl(
-                this.templatePath('ComponentName.js'),
-                this.destinationPath(this.bundleFolder + '/' + this.component.name + ".js"), {}
-            );
-        }
-        // with i18n
-        if (!this.answers.skipI18n) {
-            this.manifest.bundleLocalization = '\n';
-            this.manifest.bundlename = '${bundleName}';
-            this.manifest.description = '${bundleDescription}';
+            }
+        };
+        this._createToggleTool();
+        this.fs.copyTpl(
+            this.templatePath('ComponentNameFactory.js'),
+            this.destinationPath(this.bundleFolder + '/' + this.component.name + "Factory.js"), {
+                componentName: this.component.name
+            }
+        );
+        this.fs.copyTpl(
+            this.templatePath('ComponentName.vue'),
+            this.destinationPath(this.bundleFolder + '/' + this.component.name + ".vue"), {
+                componentName: this.component.name
+            }
+        );
 
-            this.module.define = '"."';
-
-            this._copyFile('main.js', {});
-            this._copyFile('main.js', {
-                defineString: "dojo/i18n!./nls/bundle"
-            });
-            this._copyFile('nls/bundle.js', {
-                name: this.answers.name,
-                description: this.answers.description
-            });
-            this._copyFile('nls/de/bundle.js', {
-                name: this.answers.name,
-                description: this.answers.description
-            });
-        }
-
-        // without i18n
-        else {
-            this.manifest.bundleLocalization = '"Bundle-Localization": [],\n\t"Bundle-Main": "",';
-            this.manifest.bundlename = this.answers.name;
-            this.manifest.description = this.answers.description;
-
-            this.module.define = '"."';
-        }
+        this._copyFile('main.js', {});
+        this._copyFile('nls/bundle.js', {
+            name: this.answers.name,
+            description: this.answers.description
+        });
+        this._copyFile('nls/de/bundle.js', {
+            name: this.answers.name,
+            description: this.answers.description
+        });
+        
 
         // manifest.json
         this._copyFile('manifest.json', {
             id: this.bundeleID,
             name: this.manifest.bundlename,
             version: '0.0.1',
-            description: this.manifest.description,
-            bundleLocalization: this.manifest.bundleLocalization,
             components: JSON.stringify(this.manifest.components),
             layoutWidgets: JSON.stringify(this.manifest.layoutWidgets)
         });
 
         // module.js
-        this.module.define += ',\n\t"./' + this.component.name + '"';
         this._copyFile('module.js', {
-            moduleDefine: this.module.define
+            componentName: this.answers.componentName
         });
 
         //create intern tests
@@ -157,8 +120,6 @@ module.exports = class extends Generator {
                     name: name
                 }
             );
-
-
         };
     }
 
@@ -173,12 +134,11 @@ module.exports = class extends Generator {
         var componentToAdd = {
             "name": name
         };
-        if (this.answers.createWidget) {
-            componentToAdd.provides = ["dijit.Widget"];
-            componentToAdd.properties = {
-                "widgetRole": this.component.name
-            }
-        }
+        componentToAdd.provides = "dijit.Widget";
+        componentToAdd.instanceFactory = true;
+        componentToAdd.properties = {
+            "widgetRole": this.component.name
+        };
         //this.manifest.components = '[{\n\t\t"name": "' + name + '"\n\t}]';
         this.manifest.components.push(componentToAdd);
     }
@@ -194,7 +154,7 @@ module.exports = class extends Generator {
                 "toolRole": "toolset",
                 "id": toolName,
                 "iconClass": "icon-heart",
-                "title": this.answers.skipI18n ? "Put a tool title here" : "${ui.toolTitle}",
+                "title": "${ui.toolTitle}",
                 "togglable": true
             }
         };

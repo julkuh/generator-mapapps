@@ -1,4 +1,2 @@
 import ".";
-import "./<%- moduleDefine %>";
-
-<%- moduleDefine %>
+import "./<%- componentName %>Factory";
