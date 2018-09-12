@@ -9,6 +9,7 @@
         "url": ""
     },
     "files": [
+        "generators",
         "generators/app3x",
         "generators/bundle4x",
         "generators/bundle3x"
