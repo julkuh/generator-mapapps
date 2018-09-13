@@ -24,6 +24,10 @@ To skip the selection and start with the sub-generator directly, simplay type ``
   * adding a live-configuration widget
  
 ## Release Note
+### 1.1.0
+ * Allow selection of sub-generator (bundle4x, bundle3x or app3x) through CLI
+### 1.0.0
+ * Allow creation of [map.apps 4.x style Bundles](https://developernetwork.conterra.de/de/blog/mapapps-4-f%C3%BCr-entwickler-javascript-sprachlevel-und-buildprozess) (ES2015+ and simplified manifest.json keys)
 ### 0.0.9
   * Creation of test folder inside the bundle so that intern tests are prepared and wait to be filled by a brave developper
 
