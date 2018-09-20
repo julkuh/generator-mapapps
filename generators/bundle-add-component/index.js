@@ -39,11 +39,7 @@ module.exports = class extends Generator {
 
         //create intern test for component
         if(!this.answers.skipInternTests){
-            this.fs.copyTpl(
-                this.templatePath('tests/ComponentTestFile.js'),
-                this.destinationPath(`./tests/${componentName}.js`), {componentName}
-            );
-            this.fs.append('./tests/intern-all.js', `import "./${componentName}";`);
+            _createComponentTest(componentName);
         }
     }
 
@@ -58,5 +54,13 @@ module.exports = class extends Generator {
         } else 
             manifest.components= [componentToAdd];
         this.fs.writeJSON('./manifest.json', manifest);
+    }
+
+    _createComponentTest(componentName){
+        this.fs.copyTpl(
+            this.templatePath('tests/ComponentTestFile.js'),
+            this.destinationPath(`./tests/${componentName}.js`), {componentName}
+        );
+        this.fs.append('./tests/intern-all.js', `import "./${componentName}";`);
     }
 };
