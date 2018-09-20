@@ -16,7 +16,7 @@ module.exports = class extends Generator {
 
     prompting() {
         if(this.isAlreadyBundle){
-            this.log(yosay(chalk.white.bgRed.bold('Heads up!') +  'You\'ve already created a bundle here. So i assume you wnat to create a new component instead.'));
+            this.log(yosay(chalk.white.bgRed.bold('Heads up!') +  ' You\'ve already created a bundle here. So i assume you want to ' + chalk.white.bgGreen.bold('create a new component') + ' instead.'));
         }
         else {
             this.log(yosay(
