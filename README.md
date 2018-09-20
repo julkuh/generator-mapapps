@@ -22,6 +22,7 @@ To skip the selection and start with the sub-generator directly, simplay type ``
 ## Ideas for further Versions
   * adding of additional components after initital scaffolding
   * adding a live-configuration widget
+  * bootstrapping a complete map.apps project based on mapapps-4-developers
  
 ## Release Note
 ### 1.1.0
