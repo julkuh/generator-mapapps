@@ -7,7 +7,10 @@ var yosay = require('yosay');
 module.exports = class extends Generator {
     
     initializing() {
-        this.isAlreadyBundle = this.fs.exists(this.destinationPath('manifest.json'));
+        //check if it is a bundle folder with map.apps 4 style bundle
+        this.isAlreadyBundle = 
+            this.fs.exists(this.destinationPath('manifest.json')) 
+            && this.fs.readJSON(this.destinationPath('manifest.json')).hasOwnProperty('name');
         this.answers= undefined;
     }
 
