@@ -29,20 +29,21 @@ module.exports = class extends Generator {
         //create componentname.js file
         this.fs.copyTpl(
             this.templatePath('empty-component.js'),
-            this.destinationPath('./' + componentName + ".js"), {componentName}
+            this.destinationPath(`./${componentName}.js`), {componentName}
         );
         //add import in module.js
-        this.fs.append('./module.js', 'import "./'+ componentName + '";');
+        this.fs.append('./module.js', `import "./${componentName}";`);
 
         //add manifest.json entry
         this._updateManifest(componentName)
 
+        //create intern test for component
         if(!this.answers.skipInternTests){
             this.fs.copyTpl(
                 this.templatePath('tests/ComponentTestFile.js'),
-                this.destinationPath('./tests/' + componentName + ".js"), {componentName}
+                this.destinationPath(`./tests/${componentName}.js`), {componentName}
             );
-            this.fs.append('./tests/intern-all.js', 'import "./'+ componentName + '";');
+            this.fs.append('./tests/intern-all.js', `import "./${componentName}";`);
         }
     }
 
@@ -58,5 +59,4 @@ module.exports = class extends Generator {
             manifest.components= [componentToAdd];
         this.fs.writeJSON('./manifest.json', manifest);
     }
-
 };

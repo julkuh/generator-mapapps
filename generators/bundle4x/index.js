@@ -54,14 +54,14 @@ module.exports = class extends Generator {
         this.bundeleID = this.answers.name.replace(/\s/g, "-");
         this.bundleFolder = this.bundeleID;
 
-        this._createComponentInManifest(this.component.name+"Factory");
+        this._createComponentInManifest(`${this.component.name}Factory`);
 
         //componentname.js
         this.manifest.layoutWidgets = {
             "widgetRole": this.component.name,
             "window": {
                 "title": "${ui.windowTitle}",
-                "dockTool": this.component.name + "ToggleTool",
+                "dockTool": `${this.component.name}ToggleTool`,
                 "marginBox": {
                     "w": 350,
                     "h": 355
@@ -71,13 +71,13 @@ module.exports = class extends Generator {
         this._createToggleTool();
         this.fs.copyTpl(
             this.templatePath('ComponentNameFactory.js'),
-            this.destinationPath(this.bundleFolder + '/' + this.component.name + "Factory.js"), {
+            this.destinationPath(`${this.bundleFolder}/${this.component.name}Factory.js`), {
                 componentName: this.component.name
             }
         );
         this.fs.copyTpl(
             this.templatePath('ComponentName.vue'),
-            this.destinationPath(this.bundleFolder + '/' + this.component.name + ".vue"), {
+            this.destinationPath(`${this.bundleFolder}/${this.component.name}.vue`), {
                 componentName: this.component.name
             }
         );
@@ -116,7 +116,7 @@ module.exports = class extends Generator {
 
             this.fs.copyTpl(
                 this.templatePath('tests/ComponentTestFile.js'),
-                this.destinationPath(this.bundleFolder + '/tests/' + name + '.js'), {
+                this.destinationPath(`${this.bundleFolder}/tests/${name}.js`), {
                     name: name
                 }
             );
@@ -126,7 +126,7 @@ module.exports = class extends Generator {
     _copyFile(filename, replacements) {
         this.fs.copyTpl(
             this.templatePath(filename),
-            this.destinationPath(this.bundleFolder + '/' + filename), replacements
+            this.destinationPath(`${this.bundleFolder}/${filename}`), replacements
         );
     }
 
@@ -139,11 +139,10 @@ module.exports = class extends Generator {
         componentToAdd.properties = {
             "widgetRole": this.component.name
         };
-        //this.manifest.components = '[{\n\t\t"name": "' + name + '"\n\t}]';
         this.manifest.components.push(componentToAdd);
     }
     _createToggleTool() {
-        var toolName = this.component.name + "ToggleTool";
+        var toolName = `${this.component.name}ToggleTool`;
 
         var tool = {
             "name": toolName,
