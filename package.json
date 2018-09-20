@@ -9,10 +9,7 @@
         "url": "https://github.com/julkuh"
     },
     "files": [
-        "generators",
-        "generators/app3x",
-        "generators/bundle4x",
-        "generators/bundle3x"
+        "generators/**/*"
     ],
     "keywords": [
         "map.apps",
