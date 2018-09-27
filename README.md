@@ -17,7 +17,7 @@ yo mapapps
 ```
 you can launch the generator. It provides a selection wheather you want to create an app or a bundle.
 
-To skip the selection and start with the sub-generator directly, simplay type ```yo mapapps:app``` to generate an app or ```yo mapapps:bundle``` to generate a bundle.
+To skip the selection and start with the sub-generator directly, simply type ```yo mapapps:app``` to generate an app or ```yo mapapps:bundle4x``` to generate a bundle.
 
 ## Ideas for further Versions
   * adding of additional components after initital scaffolding
