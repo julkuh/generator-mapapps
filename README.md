@@ -25,6 +25,9 @@ To skip the selection and start with the sub-generator directly, simply type ```
   * bootstrapping a complete map.apps project based on mapapps-4-developers
  
 ## Release Note
+
+### 1.2.0
+ * Allow creation of additional components after bundle initialization - When `yo mapapps` is run inside an existing bundle folder, it is detected automatically as a bundle and an option to create a component instead of a bundle or app. This includes the componentName.js file, entry in bundle's manifest.json and module.js. Even tests are pre-populated for you.
 ### 1.1.0
  * Allow selection of sub-generator (bundle4x, bundle3x or app3x) through CLI
 ### 1.0.0
