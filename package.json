@@ -24,7 +24,7 @@
         "gulp-beautify": "^2.0.0"
     },
     "devDependencies": {
-        "eslint": "^3.19.0",
+        "eslint": "^4.18.2",
         "eslint-config-ct-prodeng": "^1.1.5",
         "eslint-config-xo-space": "^0.14.0",
         "eslint-plugin-vue": "^6.1.2",
